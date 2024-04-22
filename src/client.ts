@@ -4,14 +4,11 @@ import { OtpExtension } from '@dynamic-labs/otp-extension'
 
 const environmentId =
   process.env.EXPO_PUBLIC_ENVIRONMENT_ID ||
-  '67ddb74b-e30f-4039-9a25-f033c79f1207'
+  '36107460-1867-45d5-901b-6a3581025990'
 
 const apiBaseUrl =
   process.env.EXPO_PUBLIC_API_BASE_URL ||
   'https://app.dynamic-preprod.xyz/api/v0'
-
-const webviewUrl =
-  process.env.EXPO_PUBLIC_WEBVIEW_URL || 'http://localhost:4200/'
 
 export const client = createClient({
   environmentId,
@@ -19,10 +16,5 @@ export const client = createClient({
   appLogoUrl: 'https://demo.dynamic.xyz/favicon-32x32.png',
   appName: 'Dynamic Demo',
 })
-  .extend(
-    ReactNativeExtension({
-      webviewUrl,
-      webviewDebuggingEnabled: true,
-    })
-  )
+  .extend(ReactNativeExtension())
   .extend(OtpExtension(['email', 'sms']))
