@@ -9,16 +9,29 @@ export const DisplayAuthenticatedUserView: FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.section}>
-        <Text style={styles.section__heading}>JWT:</Text>
-        <Text>{auth.token}</Text>
+        <Text style={styles.section__heading}>User:</Text>
+        <View style={styles.content_section}>
+          <Text>{JSON.stringify(auth.authenticatedUser, null, 2)}</Text>
+        </View>
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.section__heading}>User:</Text>
-        <Text>{JSON.stringify(auth.authenticatedUser, null, 2)}</Text>
+        <Text style={styles.section__heading}>Actions</Text>
+        <View style={[styles.content_section, styles.actions_section]}>
+          <Button
+            onPress={() => client.ui.userProfile.show()}
+            title="User Profile UI"
+          />
+          <Button onPress={() => client.auth.logout()} title="Logout" />
+        </View>
       </View>
 
-      <Button title="Logout" onPress={auth.logout} />
+      <View style={styles.section}>
+        <Text style={styles.section__heading}>JWT:</Text>
+        <View style={styles.content_section}>
+          <Text>{auth.token}</Text>
+        </View>
+      </View>
     </View>
   );
 };
@@ -55,5 +68,17 @@ const styles = StyleSheet.create({
   section__heading: {
     fontSize: 14,
     fontWeight: "bold",
+  },
+
+  content_section: {
+    padding: 10,
+    borderRadius: 6,
+    backgroundColor: "#f9f9f9",
+  },
+
+  actions_section: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 6,
   },
 });

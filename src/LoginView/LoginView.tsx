@@ -63,6 +63,8 @@ export const LoginView: FC = () => {
             .then(() => setUsedOneTimePasswordMethod("sms"))
         }
       />
+
+      <Button onPress={() => client.ui.auth.show()} title="Open Auth Flow UI" />
     </View>
   );
 };
