@@ -1,78 +1,71 @@
-import { FC, useState } from "react";
-import { InputField } from "../InputField";
-import { client } from "../client";
-import { Button, StyleSheet, View } from "react-native";
+import { FC, useState } from 'react'
+import { InputField } from '../InputField'
+import { client } from '../client'
+import { Button, StyleSheet, View } from 'react-native'
 
 export const LoginView: FC = () => {
   const [usedOneTimePasswordMethod, setUsedOneTimePasswordMethod] = useState<
-    "email" | "sms" | null
-  >(null);
+    'email' | 'sms' | null
+  >(null)
 
-  if (usedOneTimePasswordMethod === "email") {
+  const submitOtp = (token: string) => {
+    if (usedOneTimePasswordMethod === 'email')
+      client.auth.email.verifyOTP(token)
+    else if (usedOneTimePasswordMethod === 'sms')
+      client.auth.sms.verifyOTP(token)
+  }
+
+  if (usedOneTimePasswordMethod === null)
     return (
       <View style={styles.container}>
         <InputField
-          key="otp"
-          placeholder="OTP token"
-          onSubmit={(token) => client.auth.email.verifyOTP(token)}
+          key="email"
+          placeholder="Email login"
+          onSubmit={(email) =>
+            client.auth.email
+              .sendOTP(email)
+              .then(() => setUsedOneTimePasswordMethod('email'))
+          }
         />
 
-        <Button
-          title="Cancel"
-          onPress={() => setUsedOneTimePasswordMethod(null)}
-        />
-      </View>
-    );
-  }
-
-  if (usedOneTimePasswordMethod === "sms") {
-    return (
-      <View style={styles.container}>
         <InputField
-          key="otp"
-          placeholder="OTP token"
-          onSubmit={(token) => client.auth.sms.verifyOTP(token)}
+          key="sms"
+          placeholder="US/CA SMS login"
+          onSubmit={(phone) =>
+            client.auth.sms
+              .sendOTP({ dialCode: '1', iso2: 'us', phone })
+              .then(() => setUsedOneTimePasswordMethod('sms'))
+          }
         />
 
         <Button
-          title="Cancel"
-          onPress={() => setUsedOneTimePasswordMethod(null)}
+          title="Sign in with Farcaster"
+          onPress={() => client.auth.social.connect({ provider: 'farcaster' })}
+        />
+
+        <Button
+          onPress={() => client.ui.auth.show()}
+          title="Open Auth Flow UI"
         />
       </View>
-    );
-  }
+    )
 
   return (
     <View style={styles.container}>
-      <InputField
-        key="email"
-        placeholder="Email login"
-        onSubmit={(email) =>
-          client.auth.email
-            .sendOTP(email)
-            .then(() => setUsedOneTimePasswordMethod("email"))
-        }
-      />
+      <InputField key="otp" placeholder="OTP token" onSubmit={submitOtp} />
 
-      <InputField
-        key="sms"
-        placeholder="US/CA SMS login"
-        onSubmit={(phone) =>
-          client.auth.sms
-            .sendOTP({ dialCode: "1", iso2: "us", phone })
-            .then(() => setUsedOneTimePasswordMethod("sms"))
-        }
+      <Button
+        title="Cancel"
+        onPress={() => setUsedOneTimePasswordMethod(null)}
       />
-
-      <Button onPress={() => client.ui.auth.show()} title="Open Auth Flow UI" />
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
-    alignContent: "stretch",
+    alignContent: 'stretch',
     gap: 40,
     padding: 20,
   },
-});
+})
