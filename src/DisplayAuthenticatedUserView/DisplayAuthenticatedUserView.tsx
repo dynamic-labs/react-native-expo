@@ -4,7 +4,7 @@ import { client } from "../client";
 import { useReactiveClient } from "@dynamic-labs/react-hooks";
 
 export const DisplayAuthenticatedUserView: FC = () => {
-  const { auth } = useReactiveClient(client);
+  const { auth, wallets } = useReactiveClient(client);
 
   return (
     <View style={styles.container}>
@@ -30,6 +30,32 @@ export const DisplayAuthenticatedUserView: FC = () => {
         <Text style={styles.section__heading}>JWT:</Text>
         <View style={styles.content_section}>
           <Text>{auth.token}</Text>
+        </View>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.section__heading}>Wallets:</Text>
+        <View style={styles.content_section}>
+          {wallets.userWallets.map((wallet) => (
+            <View>
+              <Text>Wallet address: {wallet.address}</Text>
+
+              <Button
+                title="Sign message"
+                onPress={async () => {
+                  const walletClient = client.viem.createWalletClient({
+                    wallet,
+                  });
+
+                  const signedMessage = await walletClient.signMessage({
+                    message: "Hello, world!",
+                  });
+
+                  console.log(signedMessage);
+                }}
+              />
+            </View>
+          ))}
         </View>
       </View>
     </View>
