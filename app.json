@@ -12,7 +12,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": ["**/*", "assets/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.dynamicinfra.reactnativeexpo"
