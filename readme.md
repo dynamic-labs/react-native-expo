@@ -27,10 +27,16 @@ Follow these steps to get the app up and running:
    npm install
    ```
 
-3. **Start the application:**
+3. **Set up your Dynamic environment ID:**
 
    ```bash
-   EXPO_PUBLIC_ENVIRONMENT_ID=<dynamic project environment id> npm start
+   EXPO_PUBLIC_ENVIRONMENT_ID=<dynamic project environment id>
+   ```
+
+4. **Start the application:**
+
+   ```bash
+   npm start
    ```
 
    This will start the Expo CLI server, and you can open the app on your device using the Expo Go app, or in a web browser.
