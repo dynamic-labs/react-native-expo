@@ -43,7 +43,7 @@ export const DisplayAuthenticatedUserView: FC = () => {
               <Button
                 title="Sign message"
                 onPress={async () => {
-                  const walletClient = client.viem.createWalletClient({
+                  const walletClient = await client.viem.createWalletClient({
                     wallet,
                   });
 
