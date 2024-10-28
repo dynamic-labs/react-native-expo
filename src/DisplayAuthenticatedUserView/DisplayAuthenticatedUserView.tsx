@@ -37,7 +37,7 @@ export const DisplayAuthenticatedUserView: FC = () => {
         <Text style={styles.section__heading}>Wallets:</Text>
         <View style={styles.content_section}>
           {wallets.userWallets.map((wallet) => (
-            <View>
+            <View key={wallet.id}>
               <Text>Wallet address: {wallet.address}</Text>
 
               <Button
