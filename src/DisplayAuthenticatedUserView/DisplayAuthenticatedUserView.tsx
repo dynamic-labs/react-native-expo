@@ -51,6 +51,7 @@ export const DisplayAuthenticatedUserView: FC = () => {
                     message: "Hello, world!",
                   });
 
+                  // eslint-disable-next-line no-console
                   console.log(signedMessage);
                 }}
               />
