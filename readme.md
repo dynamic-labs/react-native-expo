@@ -35,11 +35,19 @@ Follow these steps to get the app up and running:
 
 4. **Start the application:**
 
+   iOS
+
    ```bash
-   npm start
+   npm run ios
    ```
 
-   This will start the Expo CLI server, and you can open the app on your device using the Expo Go app, or in a web browser.
+   Android
+
+   ```bash
+   npm run android
+   ```
+
+This will start the Expo CLI server, and you can open the app on your device using the Expo Go app, or in a web browser.
 
 For further development, you may find the following files relevant:
 

@@ -12,10 +12,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*",
-      "assets/*"
-    ],
+    "assetBundlePatterns": ["**/*", "assets/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.dynamicinfra.reactnativeexpo"
@@ -35,8 +32,6 @@
         "projectId": "165d3eb3-5b25-41a1-a3b2-8cf02e73f818"
       }
     },
-    "plugins": [
-      "expo-secure-store"
-    ]
+    "plugins": ["expo-secure-store"]
   }
 }
