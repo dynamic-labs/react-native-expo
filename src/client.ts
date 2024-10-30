@@ -5,7 +5,7 @@ import { ViemExtension } from "@dynamic-labs/viem-extension";
 
 const environmentId =
   (process.env.EXPO_PUBLIC_ENVIRONMENT_ID as string) ||
-  "2762a57b-faa4-41ce-9f16-abff9300e2c9";
+  "6a1e9351-8209-4f7a-b4a4-f17895ace559";
 
 if (!environmentId) {
   throw new Error("EXPO_PUBLIC_ENVIRONMENT_ID is required");
