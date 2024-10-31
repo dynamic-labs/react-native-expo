@@ -20,5 +20,10 @@ export const client = createClient({
   appLogoUrl: "https://demo.dynamic.xyz/favicon-32x32.png",
   appName: "Dynamic Demo",
 })
-  .extend(ReactNativeExtension())
+  .extend(ReactNativeExtension({appOrigin: "https://demo.dynamic.xyz"}))
   .extend(ViemExtension());
+
+
+  //use ngrok to expose the localhost to the internet for well known endpoints
+  //https://docs.dynamic.xyz/sdks/react-native/setup-passkey 
+  //updatte CORS

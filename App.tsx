@@ -1,26 +1,18 @@
-import { StatusBar } from "expo-status-bar";
-import { FC } from "react";
-import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
-import { Home } from "./src/Home";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import MyDrawer from './src/components/NavigationSetup';
 import { client } from "./src/client";
 
-const App: FC = () => (
-  <>
-    <client.reactNative.WebView />
-    <StatusBar style="auto" />
 
-    <SafeAreaView style={styles.main}>
-      <ScrollView>
-        <Home />
-      </ScrollView>
-    </SafeAreaView>
+const App = () => (
+  <>
+  <client.reactNative.WebView />
+  <GestureHandlerRootView style={{ flex: 1 }}>
+    <NavigationContainer>
+      <MyDrawer />
+    </NavigationContainer>
+  </GestureHandlerRootView>
   </>
 );
-
-const styles = StyleSheet.create({
-  main: {
-    flex: 1,
-  },
-});
 
 export default App;
