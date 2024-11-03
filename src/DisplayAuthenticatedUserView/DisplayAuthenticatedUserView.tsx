@@ -1,13 +1,13 @@
 import React, { FC } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Button } from "react-native";
 import { useReactiveClient } from "@dynamic-labs/react-hooks";
 import { client } from "../client";
 
 export const DisplayAuthenticatedUserView: FC = () => {
-  const { auth } = useReactiveClient(client);
+  const { auth, ui } = useReactiveClient(client);
+  console.log('UI:', ui);
 
   const { email, environmentId, phoneNumber, sessionId, userId, newUser } = auth.authenticatedUser || {};
-  const verifiedCredentials = auth.authenticatedUser?.verifiedCredentials || [];
 
   return (
     <>
@@ -23,36 +23,9 @@ export const DisplayAuthenticatedUserView: FC = () => {
           <Text style={styles.field}><Text style={styles.fieldLabel}>User ID:</Text> {userId || "N/A"}</Text>
           <Text style={styles.field}><Text style={styles.fieldLabel}>New User:</Text> {newUser ? "Yes" : "No"}</Text> 
         </View>
-
-        <Text style={styles.header}>Verified Credentials</Text>
-
-        {verifiedCredentials.map((credential, index) => (
-          <View key={index} style={styles.section}>
-            <Text style={styles.sectionTitle}>{credential.format.toUpperCase()} Credential</Text>
-            {credential.format === "blockchain" && (
-              <>
-                <Text style={styles.field}><Text style={styles.fieldLabel}>Address:</Text> {credential.address}</Text>
-                <Text style={styles.field}><Text style={styles.fieldLabel}>Chain:</Text> {credential.chain}</Text>
-                <Text style={styles.field}><Text style={styles.fieldLabel}>Wallet Name:</Text> {credential.walletName}</Text>
-                <Text style={styles.field}><Text style={styles.fieldLabel}>Wallet Provider:</Text> {credential.walletProvider}</Text>
-              </>
-            )}
-            {credential.format === "email" && (
-              <Text style={styles.field}><Text style={styles.fieldLabel}>Email:</Text> {credential.email}</Text>
-            )}
-            {credential.format === "oauth" && (
-              <>
-                <Text style={styles.field}><Text style={styles.fieldLabel}>OAuth Provider:</Text> {credential.oauthProvider}</Text>
-                <Text style={styles.field}><Text style={styles.fieldLabel}>Username:</Text> {credential.oauthUsername}</Text>
-                <Text style={styles.field}><Text style={styles.fieldLabel}>Display Name:</Text> {credential.oauthDisplayName}</Text>
-                <Text style={styles.field}><Text style={styles.fieldLabel}>Photo:</Text> {credential.oauthAccountPhotos[0]}</Text>
-              </>
-            )}
-            {credential.format === "phoneNumber" && (
-              <Text style={styles.field}><Text style={styles.fieldLabel}>Phone Number:</Text> +{credential.phoneCountryCode} {credential.phoneNumber}</Text>
-            )}
-          </View>
-        ))}
+        <View style={styles.buttonContainer}>
+        <Button title="Show User Modal" onPress={() => ui.userProfile.show()} color="#4CAF50" />
+      </View>
       </ScrollView>
     </>
   );
@@ -90,6 +63,11 @@ const styles = StyleSheet.create({
   },
   fieldLabel: {
     fontWeight: "bold",
+  },
+  buttonContainer: {
+    marginTop: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
 

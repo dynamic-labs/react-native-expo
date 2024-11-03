@@ -29,6 +29,7 @@
     "@react-native-picker/picker": "2.9.0",
     "@react-navigation/drawer": "^6.7.2",
     "@react-navigation/native": "^6.1.18",
+    "@react-navigation/stack": "^6.4.1",
     "eslint": "8",
     "expo": "~50.0.19",
     "expo-linking": "~6.2.2",

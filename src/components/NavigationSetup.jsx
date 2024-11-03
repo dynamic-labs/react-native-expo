@@ -1,25 +1,26 @@
 import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createStackNavigator } from "@react-navigation/stack";
 import Home from "../screens/Home";
 import Header from "./Header";
+import UserWallets from "../screens/Wallets";
+import WalletDetails from "../screens/WalletDetails";
+import Logout from "../screens/Logout";
 import { client } from "../client";
 import { useReactiveClient } from "@dynamic-labs/react-hooks";
-import { Button } from "react-native";
-import Logout from "../screens/Logout";
 
 const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
+
+const WalletStack = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="UserWallets" component={UserWallets} options={{ headerShown: false }} />
+    <Stack.Screen name="WalletDetails" component={WalletDetails} />
+  </Stack.Navigator>
+);
 
 const MyDrawer = () => {
   const { auth } = useReactiveClient(client);
-
-  const handleLogout = async () => {
-    try {
-      await auth.logout();
-      console.log("Logged out successfully");
-    } catch (error) {
-      console.error("Logout failed:", error);
-    }
-  };
 
   return (
     <Drawer.Navigator
@@ -29,14 +30,17 @@ const MyDrawer = () => {
       }}
     >
       <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="Wallets" component={WalletStack} />
       
-      {/* Conditionally render "Profile" and "Logout" options if the user is authenticated */}
       {auth && auth.token && (
         <>
           <Drawer.Screen name="Profile" component={Home} />
           <Drawer.Screen
             name="Logout"
-            component={Logout} // Use a placeholder component here
+            component={Logout}
+            options={{
+              drawerItemStyle: { display: "none" },
+            }}
           />
         </>
       )}
