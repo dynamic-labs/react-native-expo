@@ -38,9 +38,6 @@ const MyDrawer = () => {
           <Drawer.Screen
             name="Logout"
             component={Logout}
-            options={{
-              drawerItemStyle: { display: "none" },
-            }}
           />
         </>
       )}

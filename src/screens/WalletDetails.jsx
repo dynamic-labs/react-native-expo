@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet, Button, Alert } from "react-native";
+import { dynamicClient } from "../client";
+import { useReactiveClient } from '@dynamic-labs/react-hooks';
 
 export const WalletDetails = ({ route, navigation }) => {
   const { credential } = route.params;
+  const { wallet } = useReactiveClient(dynamicClient);
+  useEffect(() => {
+    if (credential?.id) {
+      wallet.setPrimary({ walletId: credential.id });
+      console.log(primary)
+    }
+  }, [credential.id]); // Only re-run this effect if credential.id changes
 
   const handleSignMessage = () => {
     Alert.alert("Sign Message", "This will initiate the Sign Message flow.");
@@ -26,7 +35,7 @@ export const WalletDetails = ({ route, navigation }) => {
 
       {/* Buttons for actions */}
       <View style={styles.buttonContainer}>
-        <Button title="Sign Message" onPress={handleSignMessage} color="#4CAF50" />
+        <Button title="Sign Message" onPress={() => wallet.signMessage()} color="#4CAF50" />
         <Button title="Send Crypto" onPress={handleSendCrypto} color="#2196F3" />
       </View>
     </View>

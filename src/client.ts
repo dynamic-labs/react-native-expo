@@ -18,9 +18,9 @@ export const client = createClient({
   environmentId,
   apiBaseUrl,
   appLogoUrl: "https://demo.dynamic.xyz/favicon-32x32.png",
-  appName: "Dynamic Demo",
+  appName: "Dynamic Demo"
 })
-  .extend(ReactNativeExtension({appOrigin: "https://demo.dynamic.xyz"}))
+  .extend(ReactNativeExtension({appOrigin: "https://infinite-collie-teaching.ngrok-free.app"}))
   .extend(ViemExtension());
 
 
