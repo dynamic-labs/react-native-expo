@@ -20,7 +20,7 @@ export const client = createClient({
   appLogoUrl: "https://demo.dynamic.xyz/favicon-32x32.png",
   appName: "Dynamic Demo"
 })
-  .extend(ReactNativeExtension({appOrigin: "https://infinite-collie-teaching.ngrok-free.app"}))
+  .extend(ReactNativeExtension({appOrigin: "https://demo.dynamic.xyz"}))
   .extend(ViemExtension());
 
 

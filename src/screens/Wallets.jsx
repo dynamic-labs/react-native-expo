@@ -11,8 +11,15 @@ export const UserWallets = () => {
   const verifiedCredentials = auth.authenticatedUser?.verifiedCredentials || [];
 
   const handleViewWallet = (credential) => {
-    navigation.navigate("WalletDetails", { credential });
-  };
+    console.warn("sending credential:", credential);
+
+    if (credential && typeof credential === "object") {
+        navigation.navigate("WalletDetails", { credential });
+    } else {
+        console.warn("Invalid credentials:", credential);
+    }
+};
+
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
