@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { InputField } from "../InputField";
 import { client } from "../client";
-import { Button, StyleSheet, View, Image, ImageBackground } from "react-native";
+import { Button, StyleSheet, View } from "react-native";
 
 export const LoginView: FC = () => {
   const [usedOneTimePasswordMethod, setUsedOneTimePasswordMethod] = useState<
@@ -65,9 +65,7 @@ export const LoginView: FC = () => {
     );
   };
 
-  return (
-      <View style={styles.container}>{renderContent()}</View>
-  );
+  return <View style={styles.container}>{renderContent()}</View>;
 };
 
 const styles = StyleSheet.create({
