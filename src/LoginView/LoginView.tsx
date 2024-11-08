@@ -31,10 +31,6 @@ export const LoginView: FC = () => {
 
     return (
       <>
-        <Image
-          source={require("../../assets/legionkey.png")}
-          style={styles.logo}
-        />
         <InputField
           key="email"
           placeholder="Email login"
@@ -70,12 +66,7 @@ export const LoginView: FC = () => {
   };
 
   return (
-    <ImageBackground
-      source={require("../../assets/warriors-background-small.png")}
-      style={styles.background}
-    >
       <View style={styles.container}>{renderContent()}</View>
-    </ImageBackground>
   );
 };
 
