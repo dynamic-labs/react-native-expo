@@ -14,32 +14,38 @@ You will also need to enable the SMS and/or Email Login options to have a login 
 
 Follow these steps to get the app up and running:
 
-1. **Clone the repository:**
+1. **Set Up Your Environment**
+
+   Prepare your development environment for React Native by following the official setup guide: [React Native Environment Setup](https://reactnative.dev/docs/set-up-your-environment).
+
+2. **Clone the repository:**
 
    ```bash
    git clone https://github.com/dynamic-labs/react-native-expo.git
    cd react-native-expo
    ```
 
-2. **Install dependencies:**
+3. **Install dependencies:**
 
    ```bash
    npm install
    ```
 
-3. **Set up your Dynamic environment ID:**
+4. **(Optional) Configure a `.env` File with Your Dynamic Environment ID:**
 
    ```bash
    EXPO_PUBLIC_ENVIRONMENT_ID=<dynamic project environment id>
    ```
 
-4. **Start the application:**
+5. **Start the application:**
 
    iOS
 
    ```bash
    npm run ios
    ```
+
+   Having trouble running the iOS simulator? Check out the [iOS Troubleshooting](./docs/ios-troubleshooting.md) guide.
 
    Android
 
@@ -58,10 +64,6 @@ For further development, you may find the following files relevant:
 
 ## Documentation
 
-For more detailed information on integrating Dynamic with React Native, please refer to our official documentation: [Dynamic React Native Integration](#) (link to be updated).
-
-## Disclaimer
-
-Please note that our React Native package is currently in early alpha. It is subject to changes and might have limited functionalities. Feel free to provide feedback to help us improve future releases.
+For more detailed information on integrating Dynamic with React Native, please refer to our official documentation: [Dynamic React Native Integration](https://docs.dynamic.xyz/react-native/introduction).
 
 Thank you for trying out our example app!
