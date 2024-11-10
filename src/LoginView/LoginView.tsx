@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { InputField } from "../InputField";
 import { client } from "../client";
-import { Button, StyleSheet, View, Image, ImageBackground } from "react-native";
+import { Button, StyleSheet, View } from "react-native";
 
 export const LoginView: FC = () => {
   const [usedOneTimePasswordMethod, setUsedOneTimePasswordMethod] = useState<
@@ -31,10 +31,6 @@ export const LoginView: FC = () => {
 
     return (
       <>
-        <Image
-          source={require("../../assets/legionkey.png")}
-          style={styles.logo}
-        />
         <InputField
           key="email"
           placeholder="Email login"
@@ -69,14 +65,7 @@ export const LoginView: FC = () => {
     );
   };
 
-  return (
-    <ImageBackground
-      source={require("../../assets/warriors-background-small.png")}
-      style={styles.background}
-    >
-      <View style={styles.container}>{renderContent()}</View>
-    </ImageBackground>
-  );
+  return <View style={styles.container}>{renderContent()}</View>;
 };
 
 const styles = StyleSheet.create({
