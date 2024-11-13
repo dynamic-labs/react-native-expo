@@ -15,7 +15,8 @@
     "assetBundlePatterns": ["**/*", "assets/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.dynamicinfra.reactnativeexpo"
+      "bundleIdentifier": "com.dynamicinfra.reactnativeexpo",
+      "associatedDomains": ["webCredentials:infinite-collie-teaching.ngrok-free.app"]
     },
     "android": {
       "adaptiveIcon": {

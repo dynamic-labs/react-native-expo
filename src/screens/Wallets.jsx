@@ -5,22 +5,22 @@ import { client } from "../client";
 import { useNavigation } from "@react-navigation/native"; // Import navigation hook
 
 export const UserWallets = () => {
-  const { auth } = useReactiveClient(client);
+  const { auth, wallets } = useReactiveClient(client);
   const navigation = useNavigation(); // Initialize navigation hook
 
   const verifiedCredentials = auth.authenticatedUser?.verifiedCredentials || [];
-
+  console.log("client:", wallets);
+  const wallet = wallets.embedded?.getWallet();
+  console.log("wallet:", wallet);
   const handleViewWallet = (credential) => {
-    console.warn("sending credential:", credential);
+    console.warn("sending credentials:", credential);
 
     if (credential && typeof credential === "object") {
-        navigation.navigate("WalletDetails", { credential });
+      navigation.navigate("WalletDetails", { credential });
     } else {
-        console.warn("Invalid credentials:", credential);
+      console.warn("Invalid credentials:", credential);
     }
 };
-
-
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.header}>Verified Credentials</Text>
@@ -37,7 +37,6 @@ export const UserWallets = () => {
             </>
           )}
           {/* Render other formats as before */}
-          
           <TouchableOpacity onPress={() => handleViewWallet(credential)}>
             <Text style={styles.link}>View Wallet</Text>
           </TouchableOpacity>
