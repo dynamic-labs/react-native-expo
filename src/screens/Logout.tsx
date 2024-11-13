@@ -12,9 +12,9 @@ const LogoutScreen = () => {
   useEffect(() => {
     const performLogout = async () => {
       try {
-        await auth.logout();  // Perform logout
+        await auth.logout(); // Perform logout
         console.log("Logged out successfully");
-        navigation.navigate("Home");  // Redirect to Home after logout
+        navigation.navigate("Home"); // Redirect to Home after logout
       } catch (error) {
         console.error("Logout failed:", error);
       }

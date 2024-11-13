@@ -1,10 +1,20 @@
 import { FC, useState } from "react";
 import { client } from "../client";
-import { StyleSheet, View, Image, ImageBackground, Button, TextInput, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Image,
+  ImageBackground,
+  Button,
+  TextInput,
+  Text,
+} from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 
 export const LoginView: FC = () => {
-  const [usedOneTimePasswordMethod, setUsedOneTimePasswordMethod] = useState<"email" | "sms" | null>(null);
+  const [usedOneTimePasswordMethod, setUsedOneTimePasswordMethod] = useState<
+    "email" | "sms" | null
+  >(null);
   const [loginMethod, setLoginMethod] = useState<"email" | "sms">("email");
   const [inputValue, setInputValue] = useState(""); // Email or phone number
   const [otp, setOtp] = useState(""); // OTP input value
@@ -15,7 +25,11 @@ export const LoginView: FC = () => {
         await client.auth.email.sendOTP(inputValue);
         setUsedOneTimePasswordMethod("email");
       } else {
-        await client.auth.sms.sendOTP({ dialCode: "1", iso2: "us", phone: inputValue });
+        await client.auth.sms.sendOTP({
+          dialCode: "1",
+          iso2: "us",
+          phone: inputValue,
+        });
         setUsedOneTimePasswordMethod("sms");
       }
     } catch (error) {
@@ -88,10 +102,7 @@ export const LoginView: FC = () => {
       style={styles.background}
     >
       <View style={styles.container}>
-        <Image
-      source={require("../../assets/logo.png")}
-      style={styles.logo}
-        />
+        <Image source={require("../../assets/logo.png")} style={styles.logo} />
 
         {/* Dropdown for selecting login method */}
         <View style={styles.dropdownContainer}>
@@ -99,7 +110,7 @@ export const LoginView: FC = () => {
             onValueChange={(value) => setLoginMethod(value)}
             items={[
               { label: "Login With Email", value: "email" },
-              { label: "Login With Phone (US/CA)", value: "sms" }
+              { label: "Login With Phone (US/CA)", value: "sms" },
             ]}
             placeholder={{ label: "Select Login Method", value: null }}
             value={loginMethod}
@@ -111,15 +122,24 @@ export const LoginView: FC = () => {
           <>
             <TextInput
               style={styles.input}
-              placeholder={loginMethod === "email" ? "Enter your email" : "Enter your phone number"}
-              keyboardType={loginMethod === "email" ? "email-address" : "phone-pad"}
+              placeholder={
+                loginMethod === "email"
+                  ? "Enter your email"
+                  : "Enter your phone number"
+              }
+              keyboardType={
+                loginMethod === "email" ? "email-address" : "phone-pad"
+              }
               onChangeText={setInputValue}
               value={inputValue}
             />
 
             {/* OTP Submit Button */}
             <View style={styles.buttonContainer}>
-              <Button title={loginMethod === 'sms' ? "Send OTP" : "Send Email"} onPress={handleLoginSubmit} />
+              <Button
+                title={loginMethod === "sms" ? "Send OTP" : "Send Email"}
+                onPress={handleLoginSubmit}
+              />
             </View>
           </>
         )}
@@ -141,10 +161,16 @@ export const LoginView: FC = () => {
         )}
 
         {/* Social Connect Buttons */}
-        <Text style={styles.buttonText} onPress={() => client.auth.social.connect({ provider: "farcaster" })}>
+        <Text
+          style={styles.buttonText}
+          onPress={() => client.auth.social.connect({ provider: "farcaster" })}
+        >
           Connect with Farcaster
         </Text>
-        <Text style={styles.buttonText} onPress={() => client.auth.social.connect({ provider: "google" })}>
+        <Text
+          style={styles.buttonText}
+          onPress={() => client.auth.social.connect({ provider: "google" })}
+        >
           Connect with Google
         </Text>
         <Text style={styles.buttonText} onPress={() => client.ui.auth.show()}>

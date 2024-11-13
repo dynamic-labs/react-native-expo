@@ -14,7 +14,11 @@ const Stack = createStackNavigator();
 
 const WalletStack = () => (
   <Stack.Navigator>
-    <Stack.Screen name="UserWallets" component={UserWallets} options={{ headerShown: false }} />
+    <Stack.Screen
+      name="UserWallets"
+      component={UserWallets}
+      options={{ headerShown: false }}
+    />
     <Stack.Screen name="WalletDetails" component={WalletDetails} />
   </Stack.Navigator>
 );
@@ -31,14 +35,11 @@ const MyDrawer = () => {
     >
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Wallets" component={WalletStack} />
-      
+
       {auth && auth.token && (
         <>
           <Drawer.Screen name="Profile" component={Home} />
-          <Drawer.Screen
-            name="Logout"
-            component={Logout}
-          />
+          <Drawer.Screen name="Logout" component={Logout} />
         </>
       )}
     </Drawer.Navigator>

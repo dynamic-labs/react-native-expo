@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import { useReactiveClient } from "@dynamic-labs/react-hooks";
 import { client } from "../client";
 import { useNavigation } from "@react-navigation/native"; // Import navigation hook
@@ -20,20 +26,33 @@ export const UserWallets = () => {
     } else {
       console.warn("Invalid credentials:", credential);
     }
-};
+  };
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.header}>Verified Credentials</Text>
 
       {verifiedCredentials.map((credential, index) => (
         <View key={index} style={styles.section}>
-          <Text style={styles.sectionTitle}>{credential.format.toUpperCase()} Credential</Text>
+          <Text style={styles.sectionTitle}>
+            {credential.format.toUpperCase()} Credential
+          </Text>
           {credential.format === "blockchain" && (
             <>
-              <Text style={styles.field}><Text style={styles.fieldLabel}>Address:</Text> {credential.address}</Text>
-              <Text style={styles.field}><Text style={styles.fieldLabel}>Chain:</Text> {credential.chain}</Text>
-              <Text style={styles.field}><Text style={styles.fieldLabel}>Wallet Name:</Text> {credential.walletName}</Text>
-              <Text style={styles.field}><Text style={styles.fieldLabel}>Wallet Provider:</Text> {credential.walletProvider}</Text>
+              <Text style={styles.field}>
+                <Text style={styles.fieldLabel}>Address:</Text>{" "}
+                {credential.address}
+              </Text>
+              <Text style={styles.field}>
+                <Text style={styles.fieldLabel}>Chain:</Text> {credential.chain}
+              </Text>
+              <Text style={styles.field}>
+                <Text style={styles.fieldLabel}>Wallet Name:</Text>{" "}
+                {credential.walletName}
+              </Text>
+              <Text style={styles.field}>
+                <Text style={styles.fieldLabel}>Wallet Provider:</Text>{" "}
+                {credential.walletProvider}
+              </Text>
             </>
           )}
           {/* Render other formats as before */}

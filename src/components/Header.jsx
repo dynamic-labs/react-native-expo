@@ -1,15 +1,11 @@
-import React from 'react';
-import { Appbar } from 'react-native-paper';
-import { Image, StyleSheet, View } from 'react-native';
-
-
+import React from "react";
+import { Appbar } from "react-native-paper";
+import { Image, StyleSheet, View } from "react-native";
 
 const Header = ({ navigation, previous }) => {
-
-
   return (
     <Appbar.Header
-      theme={{ colors: { primary: '#037FFF' } }} // Set the background color here
+      theme={{ colors: { primary: "#037FFF" } }} // Set the background color here
       style={styles.header}
     >
       {previous ? (
@@ -18,7 +14,7 @@ const Header = ({ navigation, previous }) => {
         <Appbar.Action icon="menu" onPress={navigation.openDrawer} />
       )}
       <View style={styles.logoContainer}>
-        <Image source={require('../../assets/logo.png')} style={styles.logo} />
+        <Image source={require("../../assets/logo.png")} style={styles.logo} />
       </View>
     </Appbar.Header>
   );
@@ -26,19 +22,19 @@ const Header = ({ navigation, previous }) => {
 
 const styles = StyleSheet.create({
   header: {
-    alignItems: 'center',
+    alignItems: "center",
     height: 60,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   logo: {
     width: 100, // Adjust as necessary
     height: 40, // Adjust as necessary
-    resizeMode: 'contain',
+    resizeMode: "contain",
   },
   logoContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
 });
 
