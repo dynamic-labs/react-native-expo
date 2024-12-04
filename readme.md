@@ -45,8 +45,6 @@ Follow these steps to get the app up and running:
    npm run ios
    ```
 
-   Having trouble running the iOS simulator? Check out the [iOS Troubleshooting](./docs/ios-troubleshooting.md) guide.
-
    Android
 
    ```bash
@@ -61,6 +59,17 @@ For further development, you may find the following files relevant:
 - HomeView: `src/Home/Home.tsx`
 - LoginView: `src/LoginView/LoginView.tsx`
 - DisplayAuthenticatedUserView: `src/DisplayAuthenticatedUserView/DisplayAuthenticatedUserView.tsx`
+
+## Troubleshooting
+
+Having trouble running the iOS simulator?
+Check out the [iOS Troubleshooting](./docs/ios-troubleshooting.md) guide.
+
+If you're seeing any errors when trying to run the app, first make sure it isn't due to expo packages version compatibility issues by running the following command:
+
+```bash
+npx expo install --check
+```
 
 ## Documentation
 
