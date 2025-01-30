@@ -5,6 +5,7 @@ import Home from "../screens/Home";
 import Header from "./Header";
 import UserWallets from "../screens/Wallets";
 import WalletDetails from "../screens/WalletDetails";
+import SocialDetails from "../screens/SocialDetails";
 import Logout from "../screens/Logout";
 import { client } from "../client";
 import { useReactiveClient } from "@dynamic-labs/react-hooks";
@@ -20,6 +21,7 @@ const WalletStack = () => (
       options={{ headerShown: false }}
     />
     <Stack.Screen name="WalletDetails" component={WalletDetails} />
+    <Stack.Screen name="SocialDetails" component={SocialDetails} />
   </Stack.Navigator>
 );
 
@@ -34,10 +36,9 @@ const MyDrawer = () => {
       }}
     >
       <Drawer.Screen name="Home" component={Home} />
-      <Drawer.Screen name="Wallets" component={WalletStack} />
-
       {auth && auth.token && (
         <>
+          <Drawer.Screen name="Wallets" component={WalletStack} />
           <Drawer.Screen name="Profile" component={Home} />
           <Drawer.Screen name="Logout" component={Logout} />
         </>

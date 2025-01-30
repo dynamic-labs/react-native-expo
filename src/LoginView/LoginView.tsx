@@ -5,7 +5,7 @@ import {
   View,
   Image,
   ImageBackground,
-  Button,
+  TouchableOpacity,
   TextInput,
   Text,
 } from "react-native";
@@ -15,7 +15,7 @@ export const LoginView: FC = () => {
   const [usedOneTimePasswordMethod, setUsedOneTimePasswordMethod] = useState<
     "email" | "sms" | null
   >(null);
-  const [loginMethod, setLoginMethod] = useState<"email" | "sms">("email");
+  const [loginMethod, setLoginMethod] = useState<"email" | "sms" | null>(null);
   const [inputValue, setInputValue] = useState(""); // Email or phone number
   const [otp, setOtp] = useState(""); // OTP input value
 
@@ -24,7 +24,7 @@ export const LoginView: FC = () => {
       if (loginMethod === "email") {
         await client.auth.email.sendOTP(inputValue);
         setUsedOneTimePasswordMethod("email");
-      } else {
+      } else if (loginMethod === "sms") {
         await client.auth.sms.sendOTP({
           dialCode: "1",
           iso2: "us",
@@ -62,37 +62,48 @@ export const LoginView: FC = () => {
       alignItems: "center",
       justifyContent: "center",
       padding: 20,
-      backgroundColor: "rgba(255, 255, 255, 0.8)", // Add a semi-transparent white overlay
+      backgroundColor: "rgba(255, 255, 255, 0.9)",
     },
     logo: {
-      width: 200,
-      height: 200,
+      width: 150,
+      height: 150,
       alignSelf: "center",
-      marginBottom: 30,
+      marginBottom: 40,
     },
     input: {
-      height: 40,
-      borderColor: "#ccc",
+      height: 45,
+      borderColor: "#DDD",
       borderWidth: 1,
-      borderRadius: 5,
-      width: "80%",
-      paddingHorizontal: 10,
+      borderRadius: 10,
+      width: "85%",
+      paddingHorizontal: 15,
       marginBottom: 20,
-      backgroundColor: "#fff",
+      backgroundColor: "#FFF",
+      fontSize: 16,
     },
     dropdownContainer: {
-      width: "80%",
+      width: "85%",
       marginBottom: 20,
     },
     buttonContainer: {
-      width: "80%",
+      width: "85%",
       marginVertical: 10,
+      backgroundColor: "#007AFF",
+      borderRadius: 10,
+      paddingVertical: 12,
     },
     buttonText: {
-      color: "#007AFF",
+      color: "#FFF",
       textAlign: "center",
+      fontSize: 18,
+      fontWeight: "bold",
+    },
+    linkText: {
       fontSize: 16,
-      marginBottom: 15,
+      color: "#007AFF",
+      marginTop: 20,
+      textDecorationLine: "underline",
+      textAlign: "center",
     },
   });
 
@@ -104,21 +115,27 @@ export const LoginView: FC = () => {
       <View style={styles.container}>
         <Image source={require("../../assets/logo.png")} style={styles.logo} />
 
-        {/* Dropdown for selecting login method */}
-        <View style={styles.dropdownContainer}>
-          <RNPickerSelect
-            onValueChange={(value) => setLoginMethod(value)}
-            items={[
-              { label: "Login With Email", value: "email" },
-              { label: "Login With Phone (US/CA)", value: "sms" },
-            ]}
-            placeholder={{ label: "Select Login Method", value: null }}
-            value={loginMethod}
-          />
-        </View>
+        {/* Step 1: Select Login Method */}
+        {!loginMethod && (
+          <View style={styles.dropdownContainer}>
+            <Text style={styles.buttonText}>Login with:</Text>
+            <TouchableOpacity
+              style={styles.buttonContainer}
+              onPress={() => setLoginMethod("email")}
+            >
+              <Text style={styles.buttonText}>Login with Email</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.buttonContainer}
+              onPress={() => setLoginMethod("sms")}
+            >
+              <Text style={styles.buttonText}>Login with Phone</Text>
+            </TouchableOpacity>
+          </View>
+        )}
 
-        {/* Input Field for Email or Phone Number */}
-        {!usedOneTimePasswordMethod && (
+        {/* Step 2: Input Field for Email or Phone Number */}
+        {loginMethod && !usedOneTimePasswordMethod && (
           <>
             <TextInput
               style={styles.input}
@@ -133,18 +150,18 @@ export const LoginView: FC = () => {
               onChangeText={setInputValue}
               value={inputValue}
             />
-
-            {/* OTP Submit Button */}
-            <View style={styles.buttonContainer}>
-              <Button
-                title={loginMethod === "sms" ? "Send OTP" : "Send Email"}
-                onPress={handleLoginSubmit}
-              />
-            </View>
+            <TouchableOpacity
+              style={styles.buttonContainer}
+              onPress={handleLoginSubmit}
+            >
+              <Text style={styles.buttonText}>
+                {loginMethod === "sms" ? "Send OTP" : "Send Email"}
+              </Text>
+            </TouchableOpacity>
           </>
         )}
 
-        {/* OTP Input Field for verification */}
+        {/* Step 3: OTP Input Field for Verification */}
         {usedOneTimePasswordMethod && (
           <>
             <TextInput
@@ -154,26 +171,29 @@ export const LoginView: FC = () => {
               onChangeText={setOtp}
               value={otp}
             />
-            <View style={styles.buttonContainer}>
-              <Button title="Verify OTP" onPress={handleOtpSubmit} />
-            </View>
+            <TouchableOpacity
+              style={styles.buttonContainer}
+              onPress={handleOtpSubmit}
+            >
+              <Text style={styles.buttonText}>Verify OTP</Text>
+            </TouchableOpacity>
           </>
         )}
 
-        {/* Social Connect Buttons */}
+        {/* Step 4: Social Connect and UI Flow Options */}
         <Text
-          style={styles.buttonText}
+          style={styles.linkText}
           onPress={() => client.auth.social.connect({ provider: "farcaster" })}
         >
           Connect with Farcaster
         </Text>
         <Text
-          style={styles.buttonText}
+          style={styles.linkText}
           onPress={() => client.auth.social.connect({ provider: "google" })}
         >
           Connect with Google
         </Text>
-        <Text style={styles.buttonText} onPress={() => client.ui.auth.show()}>
+        <Text style={styles.linkText} onPress={() => client.ui.auth.show()}>
           Open Auth Flow UI
         </Text>
       </View>
