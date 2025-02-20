@@ -7,6 +7,7 @@ import UserWallets from "../screens/Wallets";
 import WalletDetails from "../screens/WalletDetails";
 import SocialDetails from "../screens/SocialDetails";
 import Logout from "../screens/Logout";
+import Send from "../screens/Send";
 import { client } from "../client";
 import { useReactiveClient } from "@dynamic-labs/react-hooks";
 
@@ -41,6 +42,7 @@ const MyDrawer = () => {
           <Drawer.Screen name="Wallets" component={WalletStack} />
           <Drawer.Screen name="Profile" component={Home} />
           <Drawer.Screen name="Logout" component={Logout} />
+          <Drawer.Screen name="Send" component={Send} />
         </>
       )}
     </Drawer.Navigator>

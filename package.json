@@ -18,11 +18,11 @@
     ]
   },
   "dependencies": {
-    "@dynamic-labs/client": "4.0.0-alpha.32",
-    "@dynamic-labs/react-hooks": "4.0.0-alpha.32",
-    "@dynamic-labs/react-native-extension": "4.0.0-alpha.32",
-    "@dynamic-labs/viem-extension": "4.0.0-alpha.32",
-    "@dynamic-labs/zerodev-extension": "^4.0.0-alpha.52",
+    "@dynamic-labs/client": "^4.4.2",
+    "@dynamic-labs/react-hooks": "^4.4.2",
+    "@dynamic-labs/react-native-extension": "^4.4.2",
+    "@dynamic-labs/viem-extension": "^4.4.2",
+    "@dynamic-labs/zerodev-extension": "^4.4.2",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@expo/metro-runtime": "~3.1.3",

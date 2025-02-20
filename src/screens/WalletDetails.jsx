@@ -13,6 +13,7 @@ export const WalletDetails = ({ route }) => {
     const setPrimaryWallet = async () => {
       console.log("Wallet from useReactiveClient:", wallets);
       await wallets.setPrimary({ walletId: credential?.id });
+      wallets.primary = await wallets.getPrimary();
     };
 
     setPrimaryWallet();
