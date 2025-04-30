@@ -2,6 +2,7 @@ import "fast-text-encoding";
 import { createClient } from "@dynamic-labs/client";
 import { ReactNativeExtension } from "@dynamic-labs/react-native-extension";
 import { ViemExtension } from "@dynamic-labs/viem-extension";
+import { ZeroDevExtension } from "@dynamic-labs/zerodev-extension";
 
 const environmentId =
   (process.env.EXPO_PUBLIC_ENVIRONMENT_ID as string) ||
@@ -21,4 +22,5 @@ export const client = createClient({
   appName: "Dynamic Demo",
 })
   .extend(ReactNativeExtension())
-  .extend(ViemExtension());
+  .extend(ViemExtension())
+  .extend(ZeroDevExtension());
