@@ -69,13 +69,10 @@ export const LoginView: FC = () => {
 };
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
-  },
   container: {
     flex: 1,
+    minHeight: "100%",
+    minWidth: "100%",
     alignContent: "stretch",
     gap: 40,
     padding: 20,

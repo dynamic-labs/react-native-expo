@@ -24,5 +24,5 @@ export const client = createClient({
 })
   .extend(ReactNativeExtension())
   .extend(ViemExtension())
-  .extend(ZeroDevExtension());
+  .extend(ZeroDevExtension())
   .extend(SolanaExtension());
