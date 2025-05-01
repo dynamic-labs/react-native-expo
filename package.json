@@ -15,12 +15,6 @@
     "build:android": "expo export --platform android",
     "build:ios": "expo export --platform ios"
   },
-  "jest": {
-    "preset": "jest-expo",
-    "setupFiles": [
-      "<rootDir>/jest-setup.ts"
-    ]
-  },
   "dependencies": {
     "@dynamic-labs/zerodev-extension": "^4.14.0",
     "eslint": "8",
