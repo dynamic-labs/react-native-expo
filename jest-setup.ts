@@ -1,10 +1,7 @@
 jest.mock("react-native-webview", () => {
   const { View } = require("react-native");
-  interface WebViewProps {
-    [key: string]: any;
-  }
 
-  const WebView = (props: WebViewProps): React.ReactElement => {
+  const WebView = (props: { [key: string]: any }): React.ReactElement => {
     return View(props);
   };
   WebView.propTypes = { ...View.propTypes };
