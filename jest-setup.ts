@@ -23,12 +23,10 @@ jest.mock("expo-linking", () => {
 jest.mock("@dynamic-labs/client", () => ({
   createClient: jest.fn().mockReturnValue({
     extend: jest.fn(function (extension) {
-      // Merge the extension properties into this client mock
       Object.keys(extension).forEach((key) => {
         this[key] = extension[key];
       });
 
-      // Return this to allow chaining
       return this;
     }),
     auth: {},
@@ -37,7 +35,6 @@ jest.mock("@dynamic-labs/client", () => ({
   }),
 }));
 
-// Mock Dynamic Labs extensions
 jest.mock("@dynamic-labs/solana-extension", () => ({
   SolanaExtension: jest.fn().mockReturnValue({
     name: "solana",
@@ -70,5 +67,4 @@ jest.mock("@dynamic-labs/react-native-extension", () => ({
   }),
 }));
 
-// Setup fake timers for all tests
 jest.useFakeTimers();
