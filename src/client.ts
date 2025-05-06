@@ -3,6 +3,7 @@ import { createClient } from "@dynamic-labs/client";
 import { ReactNativeExtension } from "@dynamic-labs/react-native-extension";
 import { ViemExtension } from "@dynamic-labs/viem-extension";
 import { ZeroDevExtension } from "@dynamic-labs/zerodev-extension";
+import { SolanaExtension } from "@dynamic-labs/solana-extension";
 
 const environmentId =
   (process.env.EXPO_PUBLIC_ENVIRONMENT_ID as string) ||
@@ -23,4 +24,5 @@ export const client = createClient({
 })
   .extend(ReactNativeExtension())
   .extend(ViemExtension())
-  .extend(ZeroDevExtension());
+  .extend(ZeroDevExtension())
+  .extend(SolanaExtension());
