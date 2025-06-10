@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { InputField } from "../InputField";
 import { client } from "../client";
 import { Button, StyleSheet, View } from "react-native";
+import { colors, spacing } from "../theme";
 
 export const LoginView: FC = () => {
   const [usedOneTimePasswordMethod, setUsedOneTimePasswordMethod] = useState<
@@ -74,9 +75,9 @@ const styles = StyleSheet.create({
     minHeight: "100%",
     minWidth: "100%",
     alignContent: "stretch",
-    gap: 40,
-    padding: 20,
-    backgroundColor: "rgba(255, 255, 255, 0.8)", // Add a semi-transparent white overlay
+    gap: spacing.gap,
+    padding: spacing.padding,
+    backgroundColor: colors.light.base1,
   },
   logo: {
     width: 200,
