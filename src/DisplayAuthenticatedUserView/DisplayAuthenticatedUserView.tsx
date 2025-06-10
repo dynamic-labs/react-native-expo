@@ -4,6 +4,7 @@ import { Button, StyleSheet, Text, View } from "react-native";
 import nacl_util from "tweetnacl-util";
 import { client } from "../client";
 import { Wallet } from "@dynamic-labs/client";
+import { colors, spacing, typography } from "../theme";
 
 export const DisplayAuthenticatedUserView: FC = () => {
   const { auth, wallets } = useReactiveClient(client);
@@ -83,30 +84,35 @@ export const DisplayAuthenticatedUserView: FC = () => {
 const styles = StyleSheet.create({
   container: {
     alignContent: "stretch",
-    gap: 40,
-    padding: 20,
+    gap: spacing.gap,
+    padding: spacing.padding,
+    backgroundColor: colors.light.base1,
   },
   section: {
-    gap: 5,
+    gap: spacing.smallGap,
   },
   section__heading: {
-    fontSize: 14,
+    fontSize: typography.sizes.buttonPrimary,
     fontWeight: "bold",
+    color: colors.light.textPrimary,
+    fontFamily: typography.fontFamily,
   },
   content_section: {
-    padding: 10,
-    borderRadius: 6,
-    backgroundColor: "#f9f9f9",
+    padding: spacing.smallGap + 4,
+    borderRadius: spacing.smallGap,
+    backgroundColor: colors.light.base2,
+    borderWidth: 1,
+    borderColor: colors.light.base4,
   },
   actions_section: {
     flexDirection: "column",
-    gap: 6,
+    gap: spacing.smallGap,
   },
   wallet_item: {
     marginBottom: 10,
     paddingBottom: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#eaeaea",
+    borderBottomColor: colors.light.base3,
   },
   button_group: {
     marginTop: 8,

@@ -5,6 +5,7 @@ import { Home } from "./src/Home";
 import { client } from "./src/client";
 import { Buffer } from "buffer";
 import "react-native-get-random-values";
+import { colors } from "./src/theme";
 
 global.TextEncoder = require("text-encoding").TextEncoder;
 global.Buffer = Buffer;
@@ -25,6 +26,7 @@ const App: FC = () => (
 const styles = StyleSheet.create({
   main: {
     flex: 1,
+    backgroundColor: colors.light.base1,
   },
 });
 

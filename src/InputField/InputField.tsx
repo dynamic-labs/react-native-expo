@@ -1,6 +1,6 @@
 import { Button, StyleSheet, TextInput, View } from "react-native";
-
 import { FC, useState } from "react";
+import { colors, spacing, typography } from "../theme";
 
 export type LoginViewProps = {
   onSubmit: (text: string) => void;
@@ -28,14 +28,18 @@ const styles = StyleSheet.create({
   section: {
     alignItems: "center",
     flexDirection: "row",
-    gap: 5,
+    gap: spacing.smallGap,
   },
 
   section__input: {
     flex: 1,
-    borderBottomWidth: 1,
-    borderBottomColor: "gray",
-    paddingHorizontal: 3,
-    paddingVertical: 5,
+    borderWidth: 1,
+    borderColor: colors.light.base4,
+    borderRadius: spacing.smallGap,
+    paddingHorizontal: spacing.gap,
+    paddingVertical: spacing.smallGap + 2,
+    backgroundColor: colors.light.base2,
+    fontSize: typography.sizes.bodyNormal,
+    color: colors.light.textPrimary,
   },
 });
